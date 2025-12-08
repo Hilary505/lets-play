@@ -8,6 +8,8 @@ public class Product extends BaseEntity {
 
     @Id
     private String id;
+    
+    private String ownerId;
 
     private String name;
 
@@ -32,6 +34,10 @@ public class Product extends BaseEntity {
         return id;
     }
 
+    public String getOwnerId() {
+    return ownerId;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +46,10 @@ public class Product extends BaseEntity {
         this.id = id;
     }
     
+    public void setOwnerId(String ownerId) {
+    this.ownerId = ownerId;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
