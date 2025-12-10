@@ -28,14 +28,12 @@ public class AuthController {
     }
     
     @PostMapping("/register")
-    @org.springframework.security.access.prepost.PermitAll
     public ResponseEntity<User> register(@Valid @RequestBody RegisterRequest request) {
         User user = userService.createUser(request.getName(), request.getEmail(), request.getPassword(), "USER");
         return ResponseEntity.ok(user);
     }
     
     @PostMapping("/login")
-    @org.springframework.security.access.prepost.PermitAll
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest request) {
         Authentication auth = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
