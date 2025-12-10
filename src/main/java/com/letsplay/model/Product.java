@@ -1,5 +1,6 @@
 package com.letsplay.model;
 
+import jakarta.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,12 +12,19 @@ public class Product extends BaseEntity {
     
     private String ownerId;
 
+    @NotBlank(message = "Product name is required")
+    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private String name;
 
+    @Size(max = 500, message = "Description cannot exceed 500 characters")
     private String description;
 
+    @NotNull(message = "Price is required")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private double price;
 
+    @NotNull(message = "Stock is required")
+    @Min(value = 0, message = "Stock cannot be negative")
     private int stock;
 
     // Constructors
